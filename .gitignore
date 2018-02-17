@@ -1,9 +1,4 @@
-.vagrant
-/cookbooks
+nodemodules/**
 
-# Bundler
-bin/*
-.bundle/*
+Build/**
 
-.kitchen/
-.kitchen.local.yml
