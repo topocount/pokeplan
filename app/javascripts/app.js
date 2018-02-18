@@ -59,11 +59,11 @@ window.App = {
   refreshBalance: function() {
     var self = this;
 
-    var meta;
+
     PlanningPoker.deployed().then(function(instance) {
-      meta = instance;
+      var meta = instance;
       return meta.getBalance.call(account, {from: account});
-    }).then(function(value) {
+    }).then(function(value) {MetaCoin - Truffle Webpack Demo w/ Frontend
       var balance_element = document.getElementById("balance");
       balance_element.innerHTML = value.valueOf();
     }).catch(function(e) {
@@ -72,6 +72,16 @@ window.App = {
     });
   },
 };
+
+
+createSession: function() {
+  PlanningPoker.deployed().then(function(instance) {
+    var contract = instance;
+    return contract.createSession();
+  }).then(function(result){
+    console.log(result);
+  })
+}
 
 window.addEventListener('load', function() {
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)
