@@ -85,6 +85,21 @@ window.App = {
       self.setStatus("Error creating session; see log.");
     });
   },
+
+  joinSession: function() {
+    var self = this;
+
+    var _sessionId = 1;
+
+    var planningPoker;
+    PlanningPoker.deployed().then(function(instance) {
+      return instance.joinSession(_sessionId, { from: account, gas: 500000 });
+    }).then(function(result) {
+
+    }).catch(function(err) {
+      self.setStatus("Error joining session; see log");
+    });
+  }
 };
 
 window.addEventListener('load', function() {
