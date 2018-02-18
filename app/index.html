@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MetaCoin - Truffle Webpack Demo w/ Frontend</title>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <title>Pokeplan - Consensus-driven budgeting</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="./app.js"></script>
 </head>
 <body>
@@ -20,10 +21,97 @@
 
   <br>
   <h1>Create or join a session</h1>
-  <br><br><button id="createSession" onClick="App.createSession()">Create Session</button>
+  <br><br><button id="createSession" class="w3-button w3-teal" onClick="App.createSession()">Create Session</button>
 
   <span id="status"></span>
   <br>
   <span class="hint"><strong>Hint:</strong> open the browser developer console to view any errors and warnings.</span>
+
+  <div id="newSession" class="w3-card-4">
+
+      <div class="w3-container w3-grey">
+        <h2>New Session</h2>
+      </div>
+
+      <form class="w3-container">
+        <br>
+        <label>Name</label>
+        <input class="w3-input" type="text">
+        <br>
+        <button id="createSession" class="w3-button w3-teal w3-block" onClick="App.createSession()">Create Session</button> 
+        <br>
+        <br>
+
+      </form>
+
+  </div>
+
+
+  <div id="newSession" class="w3-card-4">
+
+      <div class="w3-container w3-grey">
+        <h2>Join Session</h2>
+      </div>
+
+      <form class="w3-container">
+        <br>
+        <label>Session ID</label>
+        <input class="w3-input" type="text">
+        <br>
+        <button id="joinSession" class="w3-button w3-teal w3-block" onClick="App.joinSession()">Join Session</button> 
+        <br>
+        <br>
+
+      </form>
+
+  </div>
+
+  <div id="participateSession" class="w3-card-4">
+
+      <div class="w3-container w3-grey">
+        <h2>Participate in Session</h2>
+      </div>
+
+      <form class="w3-container">
+        <br>
+        <label>Name</label>
+        <p>{INSERT SESSION NAME HERE}</p>
+        <br>
+
+
+        <div id="new-vote">
+            <label>Estimated Effort</label><br>
+            <button class="w3-button w3-white submitVote" onClick="App.submitVote()">0.5 days</button>
+            <button class="w3-button w3-white submitVote" onClick="App.submitVote()">1 day</button>
+            <button class="w3-button w3-white submitVote" onClick="App.submitVote()">2 days</button> 
+            <button class="w3-button w3-white submitVote" onClick="App.submitVote()">3 days</button>
+            <button class="w3-button w3-white submitVote" onClick="App.submitVote()">4 days</button>
+            <button class="w3-button w3-white submitVote" onClick="App.submitVote()">5 days</button>
+        </div>
+
+        <div id="current-votes">
+            <label>Current Votes</label><br>
+            <div class="w3-button w3-center reviewVote"><p>0.5 days</p></div>
+            <div class="w3-button w3-center reviewVote"><p>0.5 days</p></div>
+            <br>
+            <br>
+            <button id="createSession" class="w3-button w3-teal w3-block" onClick="App.createSession()">Update Vote</button> 
+        </div>
+
+
+        <div id="approved">
+            <br>
+            <h2>&#10004; Consensus has been achieved</h2>
+            <br>
+        </div>
+
+        <br>
+      </form>
+
+  </div>
+
+
+
+
 </body>
 </html>
