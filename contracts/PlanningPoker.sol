@@ -9,6 +9,7 @@ contract PlanningPoker {
 
   struct Session {
     uint256 sessionId;
+    string metadata;
     bool isSessionOpen;
     address creator;
     uint64 startDateTime;
