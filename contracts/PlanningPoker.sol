@@ -5,7 +5,7 @@ contract PlanningPoker {
   uint64 public sessionTime;
 
   // will convert to zero-based index
-  enum PlayerState { NoVote, OneDay, TwoDays, ThreeDays, FourDays, FiveDays, Pass }
+  enum PlayerState { NotInSession, NoVote, OneDay, TwoDays, ThreeDays, FourDays, FiveDays, Pass }
 
   struct Session {
     uint256 sessionId;
@@ -35,8 +35,8 @@ contract PlanningPoker {
   event VoteIsUnanimous(uint256 sessionId);
 
   // Setters
-  function createSession() public returns (uint256 sessionId) {
-    sessionId = sessions.length++;
+  function createSession() public {
+    uint256 sessionId = sessions.length++; //note this number is iterated after assignment so initial sessionid = 0
     Session storage session = sessions[sessionId];
     session.creator = msg.sender;
     session.startDateTime = uint64(now);
@@ -49,9 +49,9 @@ contract PlanningPoker {
     CreateSession(sessionId);
   }
 
-  function joinSession(uint256 sessionId) {
+  function joinSession(uint256 sessionId) public {
     // make sure that user is joining a valid session id
-    require(sessionId <= sessions.length);
+    require(sessionId < sessions.length);
 
     Session storage session = sessions[sessionId];
 
@@ -59,12 +59,16 @@ contract PlanningPoker {
 
     // FIXME: figure out how to find bad mapping
     // make sure player has not already joined the session
-    /*require(session.players[msg.sender] == 0);*/
+    require(session.players[msg.sender] == PlayerState.NotInSession);
 
     // add player to the session
     session.players[msg.sender] = PlayerState.NoVote;
 
     PlayerSignedIntoSession(sessionId, msg.sender);
+  }
+
+  function getSession(uint256 sessionId) public view returns (uint8) {
+      return uint8((sessions[sessionId]).players[msg.sender]);
   }
 
   function closeSession (uint256 sessionId) {
