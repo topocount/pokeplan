@@ -50,8 +50,21 @@ contract PlanningPoker {
   }
 
   function joinSession(uint256 sessionId) {
-    // use msg.sender
+    // make sure that user is joining a valid session id
+    require(sessionId <= sessions.length);
 
+    Session storage session = sessions[sessionId];
+
+    require(session.isSessionOpen);
+
+    // FIXME: figure out how to find bad mapping
+    // make sure player has not already joined the session
+    /*require(session.players[msg.sender] == 0);*/
+
+    // add player to the session
+    session.players[msg.sender] = PlayerState.NoVote;
+
+    PlayerSignedIntoSession(sessionId, msg.sender);
   }
 
   function closeSession (uint256 sessionId) {
