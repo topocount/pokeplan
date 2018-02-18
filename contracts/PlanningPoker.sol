@@ -9,6 +9,7 @@ contract PlanningPoker {
 
   struct Session {
     uint256 sessionId;
+    string metadata;
     bool isSessionOpen;
     address creator;
     uint64 startDateTime;
@@ -42,11 +43,15 @@ contract PlanningPoker {
     session.totalPlayers = 0;
     session.isSessionOpen = true;
 
+    // have creator join the session automatically
+    session.players[msg.sender] = PlayerState.NoVote;
+
     CreateSession(sessionId);
   }
 
   function joinSession(uint256 sessionId) {
     // use msg.sender
+
   }
 
   function closeSession (uint256 sessionId) {

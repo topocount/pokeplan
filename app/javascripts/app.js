@@ -84,7 +84,7 @@ window.App = {
       console.log(err);
       self.setStatus("Error creating session; see log.");
     });
-  }
+  },
 };
 
 window.addEventListener('load', function() {
