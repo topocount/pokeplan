@@ -34,8 +34,15 @@ contract PlanningPoker {
   event VoteIsUnanimous(uint256 sessionId);
 
   // Setters
-  function createSession() {
-    //
+  function createSession() public returns (uint256 sessionId) {
+    sessionId = sessions.length++;
+    Session storage session = sessions[sessionId];
+    session.creator = msg.sender;
+    session.startDateTime = uint64(now);
+    session.totalPlayers = 0;
+    session.isSessionOpen = true;
+
+    CreateSession(sessionId);
   }
 
   function joinSession(uint256 sessionId) {

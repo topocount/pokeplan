@@ -71,6 +71,20 @@ window.App = {
       self.setStatus("Error getting balance; see log.");
     });
   },
+
+  createSession: function() {
+    var self = this;
+
+    var planningPoker;
+    PlanningPoker.deployed().then(function(instance) {
+      return instance.createSession({ from: account, gas: 500000});
+    }).then(function(result) {
+
+    }).catch(function(err) {
+      console.log(err);
+      self.setStatus("Error creating session; see log.");
+    });
+  }
 };
 
 window.addEventListener('load', function() {
